@@ -14,6 +14,7 @@ def index(request: WSGIRequest):
     context = {
         'title': 'Main page: Courses',
         'courses': Course.objects.all(),
+        'lesson': Lesson.objects.all(),
     }
     return render(request, 'course/index.html', context=context)
 
@@ -27,8 +28,8 @@ def course_detail(request: WSGIRequest, course_id: int):
     }
     return render(request, 'course/detail.html', context=context)
 
-def lesson_card(request: WSGIRequest, lesson_id:int):
-    lesson = Lesson.objects.all()
+def lesson_card(request: WSGIRequest,course_id, lesson_id:int):
+    lesson = Lesson.objects.filter(id=lesson_id).first()
     context = {
          'title': lesson.title,
          'description': lesson.description,

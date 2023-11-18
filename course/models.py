@@ -28,7 +28,6 @@ class Lesson(models.Model):
     def __repr__(self):
         return self.__str__()
 
-    class Meta:
-        ordering = ['id']
+
 
 
