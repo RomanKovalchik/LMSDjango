@@ -25,4 +25,4 @@ class Lesson(models.Model):
     class Meta:
         ordering = ['id']
         db_table = 'course'
-        db_table = 'lesson'
+

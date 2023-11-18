@@ -28,13 +28,13 @@ def course_detail(request: WSGIRequest, course_id: int):
     return render(request, 'course/detail.html', context=context)
 
 def lesson_card(request: WSGIRequest, lesson_id:int):
-    lesson = Lesson.objects.filter(id=1).first()
+    lesson = Lesson.objects.all()
     context = {
          'title': lesson.title,
-         'description':lesson.description,
+         'description': lesson.description,
          'text': lesson.text,
-         'activity':lesson.activity,
-         'course_id':lesson.course,
+         'activity': lesson.activity,
+         'course_id': lesson.course,
     }
     return render(request, 'course/lesson_card.html', context=context)
 
