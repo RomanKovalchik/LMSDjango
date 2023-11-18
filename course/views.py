@@ -20,7 +20,7 @@ def index(request: WSGIRequest):
 
 def course_detail(request: WSGIRequest, course_id: int):
     course = Course.objects.filter(id=course_id).first()
-
+    print(course.title)
     context = {
         'title': course.title,
         'course': course,
