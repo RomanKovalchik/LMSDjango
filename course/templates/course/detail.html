@@ -2,4 +2,7 @@
 
 {% block main %}
 {{ course.title }}
+    {% for lesson in lessons %}
+        {% include 'course/lesson_card.html' %}
+    {% endfor %}
 {% endblock %}

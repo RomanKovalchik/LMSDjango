@@ -21,12 +21,15 @@ def index(request: WSGIRequest):
 
 def course_detail(request: WSGIRequest, course_id: int):
     course = Course.objects.filter(id=course_id).first()
+    lessons = Lesson.objects.filter(course=course).all()
     print(course.title)
     context = {
         'title': course.title,
         'course': course,
+        'lessons': lessons,
     }
     return render(request, 'course/detail.html', context=context)
+
 
 def lesson_card(request: WSGIRequest,course_id, lesson_id:int):
     lesson = Lesson.objects.filter(id=lesson_id).first()

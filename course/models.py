@@ -14,6 +14,9 @@ class Course(models.Model):
     def __repr__(self):
         return self.__str__()
 
+    class Meta:
+        db_table = 'course'
+
 
 class Lesson(models.Model):
     title = models.CharField(max_length=255)
@@ -28,6 +31,8 @@ class Lesson(models.Model):
     def __repr__(self):
         return self.__str__()
 
+    class Meta:
+        db_table = 'course_lesson'
 
 
 
