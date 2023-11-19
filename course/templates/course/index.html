@@ -2,8 +2,8 @@
 
 {% block main %}
 {{ lesson }}
-
-    <ul>
+<p>Hello</p>
+    <ul class="courses">
         {% for course in courses %}
             <li><a href="{% url 'course_detail' course_id=course.id %}">{{ course.title }}</a></li>
         {% endfor %}

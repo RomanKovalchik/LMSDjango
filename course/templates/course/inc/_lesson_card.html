@@ -1,0 +1,6 @@
+<ul>
+    <div class="title">Уроки</div>
+    {% for lesson in lessons %}
+        <li><a href="{% url 'lesson_detail' course_id=course.id lesson_id=lesson.id %}">{{ lesson.title }}</a></li>
+    {% endfor %}
+</ul>

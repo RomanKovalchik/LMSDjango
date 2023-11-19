@@ -1,0 +1,11 @@
+<form action="{% url 'course_detail' course_id=course.id %}" method="post">
+    {% csrf_token %}
+
+    {{ form.title.label_tag }}
+    {{ form.title }}
+    {% if form.title.errors %}
+        <div class="error">{{ form.title.errors }}</div>
+    {% endif %}
+
+    <button type="submit">Добавить</button>
+</form>
