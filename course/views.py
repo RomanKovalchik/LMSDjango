@@ -2,7 +2,7 @@
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render
 
-from .form import LessonForm
+from .forms import LessonForm
 from .models import Course
 from .models import Lesson
 

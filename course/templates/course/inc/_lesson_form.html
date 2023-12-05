@@ -1,11 +1,25 @@
+
+
+
 <form action="{% url 'course_detail' course_id=course.id %}" method="post">
     {% csrf_token %}
 
-    {{ form.title.label_tag }}
-    {{ form.title }}
-    {% if form.title.errors %}
-        <div class="error">{{ form.title.errors }}</div>
-    {% endif %}
+    <div class="input-data">
+        <label for='{{ form.title.label_tag }}'>Введите тему урока:
+            {{ form.title  }}</label><br>
 
-    <button type="submit">Добавить</button>
+        <label for='{{ form.description.label_tag }}'>Введите описание урока:
+            {{ form.description }}</label>
+        <label for='{{ form.text.label_tag }}'>Введите текст урока:
+            {{ form.text }}</label>
+        <label for='{{ form.activity.label_tag }}'>Введите задание:
+            {{ form.activity }}</label>
+
+
+        {% if form.title.errors %}
+            <div class="error">{{ form.title.errors }}</div>
+        {% endif %}
+
+        <button id="btm" type="submit">Добавить</button>
+    </div>
 </form>
