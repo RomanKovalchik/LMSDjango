@@ -26,7 +26,7 @@ def register_view(request):
             user = authenticate(request, email=email, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('index')
+                return redirect('course_index')
 
     return render(request, 'user/register.html', {'form': form})
 
@@ -40,7 +40,7 @@ def login_view(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect('course_index')
 
     return render(request, 'user/login.html', {'form': form})
 

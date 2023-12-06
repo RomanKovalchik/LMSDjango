@@ -7,28 +7,20 @@
                 WDB
             </div>
             <div class="header_item headerButton">
-                <a href="#">News</a>
+                <a href="{% url 'course_index' %}">Cources</a>
             </div>
-            <div class="header_item headerButton">
-                <a href="#">Events</a>
-            </div>
-            <div class="header_item headerButton">
-                <a href="#">LifeHacks</a>
-            </div>
-            <div class="header_item headerButton">
-                <a href="#">Technologies</a>
-            </div>
-            <div class="header_item headerButton">
-                <a href="#">Business</a>
-            </div>
+
         </div>
         <div class="header_section">
-            <div class="header_item headerButton">
-                <a href="#">Settings</a>
-            </div>
-            <div class="header_item headerButton">
-                <a href="#">Log in</a>
-            </div>
+            {% if request.user.is_authenticated %}
+                <div class="header_item headerButton profile">
+                    <a href="{% url 'profile' %}">Profile</a>
+                </div>
+            {% else %}
+                <div class="header_item headerButton">
+                    <a href="{% url 'login' %}">Log In</a>
+                </div>
+            {% endif %}
         </div>
     </div>
 </header>

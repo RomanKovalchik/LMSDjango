@@ -10,13 +10,16 @@
     <title>Document</title>
 </head>
 <body>
-    {{ request.user }}
-
     {% include 'inc/_header.html' %}
-
-    {% block main %}
+    {% block body %}
+        <div class="content">
+            <main>
+               {% block main %}
+                {% endblock %}
+            </main>
+            <aside>aside</aside>
+        </div>
     {% endblock %}
-
     {% include 'inc/_footer.html' %}
 </body>
 </html>
