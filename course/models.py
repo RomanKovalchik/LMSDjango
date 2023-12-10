@@ -34,5 +34,17 @@ class Lesson(models.Model):
     class Meta:
         db_table = 'course_lesson'
 
+class UserLesson(models.Model):
+    user = models.TextField(null=True)
+    lesson = models.TextField(null=True)
+    is_completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'<{self.__class__.__name__}>: {self.user}'
+
+    def __repr__(self):
+        return self.__str__()
+
+
 
 
