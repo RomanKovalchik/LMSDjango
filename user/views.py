@@ -2,15 +2,21 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect
 
+from course.models import Course
 from user.forms import CustomUserCreationForm, CustomUserLoginForm
+from user.models import UserGroup
 
 
 # Create your views here.
 
 
 def index(request: WSGIRequest):
+
+    groups = request.user.group_users.all()
+    courses = Course.objects.filter(group_courses__in=groups)
     context = {
-        'title': 'Главная страница'
+        'title': 'Главная страница',
+        'courses': courses,
     }
     return render(request, 'user/index.html', context=context)
 

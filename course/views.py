@@ -3,7 +3,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render
 
 from .forms import LessonForm
-from .models import Course
+from .models import Course, UserLesson
 from .models import Lesson
 
 
@@ -22,6 +22,7 @@ def index(request: WSGIRequest):
 
 def course_detail(request: WSGIRequest, course_id: int):
     course = Course.objects.filter(id=course_id).first()
+    lessons = UserLesson.objects.filter(user=request.user)
     if request.method == "POST":
         form = LessonForm(request.POST)
 
@@ -36,8 +37,6 @@ def course_detail(request: WSGIRequest, course_id: int):
     else:
         form = LessonForm()
 
-
-    lessons = Lesson.objects.filter(course=course).all()
     context = {
         'title': course.title,
         'course': course,

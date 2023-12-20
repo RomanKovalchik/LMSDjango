@@ -72,3 +72,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __repr__(self):
         return self.__str__()
 
+
+class UserGroup(models.Model):
+    title = models.CharField(max_length=50)
+    courses = models.ManyToManyField('course.Course', related_name='group_courses')
+    users = models.ManyToManyField(CustomUser, related_name='group_users')

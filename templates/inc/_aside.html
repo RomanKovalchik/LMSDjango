@@ -1,0 +1,13 @@
+<aside>
+    {% for user_lesson in lessons %}
+        {% if not user_lesson.is_completed %}
+            <div class="asidelesson">
+                <div class="title">
+                     <a href="{% url 'lesson_detail' course_id=user_lesson.lesson.course.id lesson_id=user_lesson.lesson.id %}">{{ user_lesson.lesson.title }}</a>
+                </div>
+                <div class="status {% if user_lesson.is_completed %}success{% else %}incomplete{% endif %}"></div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</aside>
+

@@ -1,6 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
+from user.models import UserGroup
 from .models import Lesson
 
 
@@ -20,6 +21,11 @@ class LessonForm(forms.ModelForm):
     activity = forms.CharField(
         widget=forms.TextInput(
             attrs={"placeholder": "Введите задание для урока...", "class": "input-data"})
+    )
+    group = forms.ChoiceField(
+        label='Группа',
+        choices=[(group.id, group.title) for group in UserGroup.objects.all()],
+        required=True,
     )
 
     class Meta:
