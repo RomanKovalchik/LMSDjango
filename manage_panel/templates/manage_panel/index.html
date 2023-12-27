@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
 {% block main %}
 
+    <form method="post" action={% url 'panel' %}>
+       {% csrf_token %}
+        <div class="courses">
+            {{ form.courses.label }}
+            {{ form.courses }}
+        </div>
+        {{ form.groups }}
+        <button type="submit">Submit</button>
+    </form>
+
 {% endblock %}

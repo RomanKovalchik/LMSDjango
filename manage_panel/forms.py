@@ -4,13 +4,13 @@ from course.models import Course
 from user.models import UserGroup
 
 
-class GroupCourseForm(forms.ModelForm):
+class GroupCourseForm(forms.Form):
     courses = forms.ModelMultipleChoiceField(
         queryset=Course.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
+        widget=forms.CheckboxSelectMultiple(),
         required=True,
     )
-
-    class Meta:
-        model = UserGroup
-        fields = ['courses', ]
+    groups = forms.ModelChoiceField(
+        queryset=UserGroup.objects.all(),
+        required=True,
+    )

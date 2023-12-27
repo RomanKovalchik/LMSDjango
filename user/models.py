@@ -77,3 +77,9 @@ class UserGroup(models.Model):
     title = models.CharField(max_length=50)
     courses = models.ManyToManyField('course.Course', related_name='group_courses')
     users = models.ManyToManyField(CustomUser, related_name='group_users')
+
+    def __str__(self):
+        return f'<{self.__class__.__name__}>: {self.title}'
+
+    def __repr__(self):
+        return self.__str__()
