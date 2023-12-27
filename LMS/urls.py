@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('main.urls')),
     path('user/', include('user.urls')),
     path('course/', include('course.urls')),
+    path('panel/', include('manage_panel.urls')),
 
 
     path('register/', user_views.register_view, name='register'),

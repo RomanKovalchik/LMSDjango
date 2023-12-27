@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 from user.models import UserGroup
-from .models import Lesson
+from .models import Lesson, Course
 
 
 class LessonForm(forms.ModelForm):
@@ -35,9 +35,11 @@ class LessonForm(forms.ModelForm):
     def clean_title(self):
         title = self.cleaned_data['title']
 
-        if not title.startswith('ю'):
-            raise ValidationError('Заголовок не начинает с ю')
+        # if not title.startswith('ю'):
+        # raise ValidationError('Заголовок не начинает с ю')
 
-        pass
+        # pass
 
         return title
+
+

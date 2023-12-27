@@ -2,6 +2,7 @@
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render
 
+from user.models import UserGroup, CustomUser
 from .forms import LessonForm
 from .models import Course, UserLesson
 from .models import Lesson
@@ -27,9 +28,15 @@ def course_detail(request: WSGIRequest, course_id: int):
         form = LessonForm(request.POST)
 
         if form.is_valid():
-            form = form.save(commit=False)
-            form.course = course
-            form.save()
+            new_lesson = form.save(commit=False)
+            new_lesson.course = course
+            new_lesson = form.save()
+
+            group = UserGroup.objects.filter(id=form.data.get('group')).first()
+            users = CustomUser.objects.filter(group_users=group)
+
+            new_user_lesson = [UserLesson(user=user, lesson=new_lesson) for user in users]
+            UserLesson.objects.bulk_create(new_user_lesson)
 
             form = LessonForm()
         else:

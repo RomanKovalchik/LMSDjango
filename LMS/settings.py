@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'user',
     'course',
     'main',
+    'manage_panel',
 ]
 
 MIDDLEWARE = [
