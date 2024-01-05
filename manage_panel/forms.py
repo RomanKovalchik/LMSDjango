@@ -13,4 +13,5 @@ class GroupCourseForm(forms.Form):
     groups = forms.ModelChoiceField(
         queryset=UserGroup.objects.all(),
         required=True,
+        widget=forms.MultipleChoiceField(attrs={"placeholder": "Введите задание для урока...", "class": "input-data"}),
     )

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from course.models import Course
 from manage_panel.forms import GroupCourseForm
 
 
@@ -15,7 +16,7 @@ def index(request):
             group.courses.add(*courses)
 
     context = {
-        'form': GroupCourseForm()
+        'form': GroupCourseForm(initial={'courses': Course.objects.all()})
     }
 
     return render(request, "manage_panel/index.html", context=context)

@@ -2,6 +2,7 @@
 
 {% block main %}
     {{ course.title }}
+    <div>Ваш процент успешности: {{ progress }}%</div>
     {% include 'course/inc/_lesson_card.html' %}
     {% include 'course/inc/_lesson_form.html' %}
 
