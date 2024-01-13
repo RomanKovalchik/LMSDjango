@@ -14,10 +14,26 @@ from .models import Lesson
 
 #
 def index(request: WSGIRequest):
+    course_complete = {}
+    #num_courses = Course.objects.filter(lesson__userlesson__user=request.user)
+    num_courses = Course.objects.count()
+    for i in range(num_courses):
+        cour = str(Course.objects.values('title')[i]['title'])
+        #print(i)
+        l = UserLesson.objects.filter(lesson__course=i + 1, is_completed=1, user=request.user).count()
+        t = UserLesson.objects.filter(lesson__course=i + 1, user=request.user).count()
+        if (t != 0):
+            p = (l / t) * 100
+        else:
+            continue
+
+        course_complete[cour] = p
+    print(course_complete)
     context = {
         'title': 'Main page: Courses',
         'courses': Course.objects.all(),
         'lesson': Lesson.objects.all(),
+        'progress': course_complete,
     }
     return render(request, 'course/index.html', context=context)
 
@@ -25,6 +41,8 @@ def index(request: WSGIRequest):
 def course_detail(request: WSGIRequest, course_id: int):
     course = Course.objects.filter(id=course_id).first()
     lessons = UserLesson.objects.filter(user=request.user)
+
+
 
     status = {str(i['is_completed']): i['total'] for i in UserLesson.objects.filter(
             lesson__in=Lesson.objects.filter(course_id=course_id),

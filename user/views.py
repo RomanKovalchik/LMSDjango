@@ -14,6 +14,8 @@ def index(request: WSGIRequest):
 
     groups = request.user.group_users.all()
     courses = Course.objects.filter(group_courses__in=groups)
+    progress = Course.objects.filter(group_courses__courses__lesson=1)
+    print(progress)
     context = {
         'title': 'Главная страница',
         'courses': courses,

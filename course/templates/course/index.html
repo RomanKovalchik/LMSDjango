@@ -2,6 +2,12 @@
 
 {% block main %}
 {{ lesson }}
+
+
+
+    {% for k, v in progress.items %}
+        <h2> Для дисциплины "{{ k }}" Ваша успеваемость составляет:  {{ v }}%  </h2>
+    {% endfor %}
 <p>Hello</p>
     <ul class="courses">
         {% for course in courses %}

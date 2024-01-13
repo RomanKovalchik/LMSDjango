@@ -2,11 +2,8 @@
 {% block main %}
 
     <form method="post" action={% url 'panel' %}>
-       {% csrf_token %}
-        <div class="courses">
-            {{ form.courses.label }}
-            {{ form.courses }}
-        </div>
+        {% csrf_token %}
+        {% include 'manage_panel/inc/_course_list.html' %}
         {{ form.groups }}
 
         <button type="submit">Submit</button>
