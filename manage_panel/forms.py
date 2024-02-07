@@ -11,6 +11,14 @@ class GroupCourseForm(forms.Form):
         widget=forms.CheckboxSelectMultiple(),
         required=True,
     )
+    search = forms.CharField(widget=forms.TextInput(
+        attrs={'hx-post': reverse_lazy("hx_course_search"),
+               'hx-trigger': "keyup changed delay:500ms",
+               'hx-target': "#search",
+               'hx-swap': "outerHTML",
+               'placeholder': 'Search...'})
+    )
+
     groups = forms.ModelChoiceField(
         queryset=UserGroup.objects.all(),
         required=True,

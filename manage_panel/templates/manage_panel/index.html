@@ -4,9 +4,12 @@
     <form method="post" action={% url 'panel' %}>
         {% csrf_token %}
         {% include 'manage_panel/inc/_course_list.html' %}
-        {{ form.groups }}
+        {{ form.search }}
+        {% include 'manage_panel/inc/_group.html' %}
 
         <button type="submit">Submit</button>
+
+
     </form>
 
 {% endblock %}

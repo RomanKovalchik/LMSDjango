@@ -7,6 +7,7 @@ from user.models import UserGroup
 
 # Create your views here.
 def index(request):
+    print(type(67))
     form = GroupCourseForm(request.POST)
     if request.method == 'POST':
         if form.is_valid():
@@ -33,5 +34,12 @@ def gr_course_form_part(request):
     return redirect('course_index')
 
 
+def gr_course_form_search(request):
+    if request.method == 'POST':
+        groups = UserGroup.objects.filter(title__contains=request.POST.get('search')).all()
+        context = {
+            'form': GroupCourseForm(initial={'groups': ['----']})
+        }
 
-
+        return render(request, "manage_panel/inc/_group.html", context=context)
+    return redirect('course_index')
